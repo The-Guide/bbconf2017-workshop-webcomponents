@@ -3,7 +3,9 @@
   "shell": "src/bbconf2017-workshop-app.html",
   "fragments": [
     "src/bbconf2017-workshop-dashboard.html",
-    "src/bbconf2017-workshop-codelabs.html"
+    "src/bbconf2017-workshop-codelabs.html",
+    "src/labs/about/about.html",
+    "src/labs/polymer-lego-for-the-web/polymer-lego-for-the-web.html"
   ],
   "sources": [
     "src/**/*",
@@ -14,19 +16,11 @@
     "bower_components/webcomponentsjs/*.js"
   ],
   "lint": {
-    "rules": ["polymer-2"]
+    "rules": ["polymer-1"]
   },
   "builds": [
     {
       "preset": "es5-bundled",
-      "basePath": "/bbconf2017-workshop-webcomponents/"
-    },
-    {
-      "preset": "es6-bundled",
-      "basePath": "/bbconf2017-workshop-webcomponents/"
-    },
-    {
-      "preset": "es6-unbundled",
       "basePath": "/bbconf2017-workshop-webcomponents/"
     }
   ]

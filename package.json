@@ -9,6 +9,7 @@
   "scripts": {
     "start": "polymer serve -o",
     "build": "polymer build",
+    "deploy": "sh build.sh",
     "lint": "npm run lint:javascript && polymer lint",
     "lint:javascript": "eslint . --ext js,html --ignore-path .gitignore",
     "test": "polymer test",
