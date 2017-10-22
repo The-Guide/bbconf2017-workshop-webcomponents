@@ -9,6 +9,7 @@
   ],
   "sources": [
     "src/**/*",
+    "data/**/*",
     "images/**/*"
   ],
   "extraDependencies": [
