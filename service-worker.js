@@ -37,7 +37,7 @@
 /* eslint-disable indent, no-unused-vars, no-multiple-empty-lines, max-nested-callbacks, space-before-function-paren, quotes, comma-spacing */
 'use strict';
 
-var precacheConfig = [["bower_components/webcomponentsjs/webcomponents-loader.js","f13bbbbf647b7922575a7894367ddaaf"],["images/favicon.ico","c0f38aabd3bebb6eb0c3c2a5e0f4e6fb"],["index.html","8e9019b640fe65cc399a1ad178c36f71"],["manifest.json","c4388dfedbe685b0167025075fdb6d74"],["src/bbconf2017-workshop-app.html","36399e35d5bacf99a6677a8df5d2cebf"],["src/bbconf2017-workshop-codelabs.html","4f6b185663c0bafe35353752e6f5ce10"],["src/bbconf2017-workshop-dashboard.html","7c988d5b98ac01fff5b37a0940673417"],["src/labs/about/about.html","f8f80845ec507319d10c929d1d2f9b71"],["src/labs/polymer-lego-for-the-web/polymer-lego-for-the-web.html","eb2555eefe99f217ec62df3a7091973c"]];
+var precacheConfig = [["bower_components/webcomponentsjs/webcomponents-loader.js","f13bbbbf647b7922575a7894367ddaaf"],["images/favicon.ico","c0f38aabd3bebb6eb0c3c2a5e0f4e6fb"],["index.html","181ef43131363673b2493feb28288cb9"],["manifest.json","c4388dfedbe685b0167025075fdb6d74"],["src/bbconf2017-workshop-app.html","36399e35d5bacf99a6677a8df5d2cebf"],["src/bbconf2017-workshop-codelabs.html","4f6b185663c0bafe35353752e6f5ce10"],["src/bbconf2017-workshop-dashboard.html","98e5d2e80f4c3de5b492f060d454a877"],["src/labs/about/about.html","f8f80845ec507319d10c929d1d2f9b71"],["src/labs/polymer-lego-for-the-web/polymer-lego-for-the-web.html","eb2555eefe99f217ec62df3a7091973c"]];
 var cacheName = 'sw-precache-v3--' + (self.registration ? self.registration.scope : '');
 
 
