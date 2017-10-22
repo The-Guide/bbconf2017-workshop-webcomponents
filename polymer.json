@@ -1,0 +1,33 @@
+{
+  "entrypoint": "index.html",
+  "shell": "src/bbconf2017-workshop-app.html",
+  "fragments": [
+    "src/bbconf2017-workshop-dashboard.html",
+    "src/bbconf2017-workshop-codelabs.html"
+  ],
+  "sources": [
+    "src/**/*",
+    "images/**/*"
+  ],
+  "extraDependencies": [
+    "manifest.json",
+    "bower_components/webcomponentsjs/*.js"
+  ],
+  "lint": {
+    "rules": ["polymer-2"]
+  },
+  "builds": [
+    {
+      "preset": "es5-bundled",
+      "basePath": "/bbconf2017-workshop-webcomponents/"
+    },
+    {
+      "preset": "es6-bundled",
+      "basePath": "/bbconf2017-workshop-webcomponents/"
+    },
+    {
+      "preset": "es6-unbundled",
+      "basePath": "/bbconf2017-workshop-webcomponents/"
+    }
+  ]
+}
