@@ -1,19 +1,19 @@
 [
     {
-        "category": "About",
+        "category": "about",
         "slug": "about",
         "title": "About Codelabs",
-        "updated": "2017-03-27T23:35:41Z",
+        "updated": "2017-10-29T18:24:00Z",
         "author": "Radu Enuca",
         "duration": 0,
         "tags": ""
     },
     {
-        "category": "Polymer",
-        "slug": "polymer-lego-for-the-web",
-        "title": "Polymer - Lego for the Web",
-        "updated": "2017-06-25T11:45:00Z",
+        "category": "web-components",
+        "slug": "web-components-basics",
+        "title": "Discover the basics of web components by building a random greeter component",
+        "updated": "2017-10-29T19:00:00Z",
         "author": "Radu Enuca",
-        "duration": 60
+        "duration": 40
     }
 ]
