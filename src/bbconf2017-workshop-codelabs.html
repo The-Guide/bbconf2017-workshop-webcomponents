@@ -5,8 +5,8 @@
 <link rel="import" href="../bower_components/iron-pages/iron-pages.html">
 
 <link rel="lazy-import" href="labs/about/about.html">
-<link rel="lazy-import"
-      href="labs/polymer-lego-for-the-web/polymer-lego-for-the-web.html">
+<link rel="lazy-import" href="labs/web-components-basics/web-components-basics.html">
+
 
 <dom-module id="bbconf2017-workshop-codelabs">
     <template>
@@ -19,18 +19,8 @@
         <iron-pages selected=[[codelab]] attr-for-selected="name"
                     fallback-selection="about">
             <codelab-about name="about"></codelab-about>
-            <codelab-front-end-foundations
-                    name="front-end-foundations"></codelab-front-end-foundations>
-            <codelab-package-managers
-                    name="package-managers"></codelab-package-managers>
-            <codelab-todo-angularjs
-                    name="todo-angularjs"></codelab-todo-angularjs>
-            <codelab-gulp-introduction
-                    name="gulp-introduction"></codelab-gulp-introduction>
-            <codelab-angularjs-form-validation
-                    name="angularjs-form-validation"></codelab-angularjs-form-validation>
-            <codelab-polymer-lego-for-the-web
-                    name="polymer-lego-for-the-web"></codelab-polymer-lego-for-the-web>
+            <codelab-web-components-basics
+                    name="web-components-basics"></codelab-web-components-basics>
         </iron-pages>
     </template>
     <script>

@@ -219,6 +219,22 @@
             .polymer-icon {
                 background-image: url("../images/categories/polymer.png");
             }
+
+            .web-components-bg {
+                background-color: #F16529;
+            }
+
+            .web-components-bg ~ .card-footer paper-button {
+                color: #F16529;
+            }
+
+            .web-components-bg ~ .card-footer paper-button:hover, .web-components-bg ~ .card-footer paper-button[focused] {
+                background: rgba(241, 101, 41, 0.1);
+            }
+
+            .web-components-icon {
+                background-image: url("../images/categories/web-components.svg");
+            }
         </style>
         <div class$="card-header [[_toLowerCase(category)]]-bg">
             <div id="icon"
