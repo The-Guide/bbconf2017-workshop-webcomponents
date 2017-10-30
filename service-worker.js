@@ -37,7 +37,7 @@
 /* eslint-disable indent, no-unused-vars, no-multiple-empty-lines, max-nested-callbacks, space-before-function-paren, quotes, comma-spacing */
 'use strict';
 
-var precacheConfig = [["bower_components/webcomponentsjs/webcomponents-loader.js","f13bbbbf647b7922575a7894367ddaaf"],["images/favicon.ico","c0f38aabd3bebb6eb0c3c2a5e0f4e6fb"],["index.html","181ef43131363673b2493feb28288cb9"],["manifest.json","c4388dfedbe685b0167025075fdb6d74"],["src/bbconf2017-workshop-app.html","36399e35d5bacf99a6677a8df5d2cebf"],["src/bbconf2017-workshop-codelabs.html","14b875d9f200707d0bcecfb190de85e1"],["src/bbconf2017-workshop-dashboard.html","f1c474c277b8287b4aa0b590670f90f4"],["src/labs/about/about.html","08df15f451360c996945c6403ca3dcea"],["src/labs/web-components-basics/web-components-basics.html","5b85ff5b695a63e16b4d699861ebb1f5"]];
+var precacheConfig = [["bower_components/webcomponentsjs/webcomponents-loader.js","f13bbbbf647b7922575a7894367ddaaf"],["images/favicon.ico","c0f38aabd3bebb6eb0c3c2a5e0f4e6fb"],["index.html","181ef43131363673b2493feb28288cb9"],["manifest.json","c4388dfedbe685b0167025075fdb6d74"],["src/bbconf2017-workshop-app.html","36399e35d5bacf99a6677a8df5d2cebf"],["src/bbconf2017-workshop-codelabs.html","14b875d9f200707d0bcecfb190de85e1"],["src/bbconf2017-workshop-dashboard.html","f1c474c277b8287b4aa0b590670f90f4"],["src/labs/about/about.html","08df15f451360c996945c6403ca3dcea"],["src/labs/web-components-basics/web-components-basics.html","6bf00f95c4ba4a35754cdc464e846766"]];
 var cacheName = 'sw-precache-v3--' + (self.registration ? self.registration.scope : '');
 
 
