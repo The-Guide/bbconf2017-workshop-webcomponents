@@ -131,8 +131,8 @@
                     <code>Console</code> tab where you should see:
                 </p>
 
-                <p style="display:flex; justify-content: center; align-items: center;"><img
-                        src="/images/labs/web-components-basics/console-log.png"></p>
+                <p style="display:flex; justify-content: center; align-items: center;">
+                    <img src="[[rootPath]]images/labs/web-components-basics/console-log.png"></p>
             </google-codelab-step>
             <google-codelab-step label="Introducing Custom Elements" duration="5">
                 <h2>Defining a Custom Element</h2>
@@ -323,14 +323,14 @@ customElements.define(RandomGreeter.is, RandomGreeter);
 &lt;template id="mytemplate"&gt;
     &lt;img src="" alt="great image"&gt;
     &lt;div class="comment"&gt;&lt;/div&gt;
-&lt;/html&gt;
+&lt;/template&gt;
 </code></pre>
 
                 <h2><strong>The pillars</strong></h2>
 
                 <p>
                     Wrapping content in a Wrapping content in a <code>&lt;template&gt;</code> gives us few important
-                    properties. gives us few important properties.
+                    properties:
                 </p>
 
                 <ol>
@@ -439,7 +439,7 @@ customElements.define(RandomGreeter.is, RandomGreeter);
                     each x seconds.
                 </p>
 
-                <p>Inside the <code>constructor</code> set up some harcoded greets</p>
+                    <p>Inside the <code>constructor</code> set up some hardcoded greets</p>
 
                 <pre>
 <code>
@@ -493,9 +493,10 @@ _render() {
 
                 <aside class="tip">
                     <p>
-                        <strong>Hint:</strong> `
-                        <a href="https://developer.mozi`lla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setInterval">
-                            setInterval()</a>
+                        <strong>Hint:</strong>
+                        <a
+                                href="https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setInterval"
+                                target="_blank">setInterval()</a>
                     </p>
                 </aside>
             </google-codelab-step>
@@ -647,7 +648,7 @@ attributeChangedCallback(name, oldValue, newValue) {
                 <h2><strong>Putting it All Together</strong></h2>
 
                 <p>
-                    Let’s put all these concepts together and update the <code>ranom-greeter</code> component.
+                    Let’s put all these concepts together and update the <code>random-greeter</code> component.
                 </p>
 
                 <pre>
