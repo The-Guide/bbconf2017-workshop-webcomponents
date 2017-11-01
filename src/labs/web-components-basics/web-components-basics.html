@@ -17,7 +17,7 @@
 
       static get is() { return 'random-greeter' }
 
-      connectedCallback() {
+      connectedCallback() {                                                       ee how a web component can be extended
         console.log('random-greeter element added to the DOM!');
       }
     }
@@ -406,7 +406,7 @@ random-greeter {
     text-align: left;
     color: #ffffff;
 }
-</code></pre></google-codelab-step><google-codelab-step label="Polyfills and Transpilation" duration="6"><aside class="note"><p>We covered the basics of creating custom elements using Web Component specs, but our simple custom element is not yet production-ready because of the use of new JavaScript features and the fact that <strong>Custom Elements</strong> and <strong>Shadow DOM</strong> are not supported in all popular browsers yet.</p></aside><p>In this step, we’ll quickly go over the steps to transpile our custom element code to be compatible with ES5 and to include the necessary Web Components polyfills.</p><h2><strong>Transpilation</strong></h2><p><code>random-greeter</code> element code contains ES6 classes and string literals and arrow functions. These features are great to use at author-time, but the code has to be transpiled using a tool like Babel so that it can run in browsers that only understand ES5 code. We’ll go ahead and use babel-cli and the babel-preset-es2015 preset do to just that.</p><p>If your project doesn’t have a <code>package.json</code> file just yet, go ahead an create one using either <code>npm</code> or <code>Yarn</code>. This will allow you to install the necessary packages:</p><pre><code>
+</code></pre></google-codelab-step><google-codelab-step label="Polyfills and Transpiling" duration="6"><aside class="note"><p>We covered the basics of creating custom elements using Web Component specs, but our simple custom element is not yet production-ready because of the use of new JavaScript features and the fact that <strong>Custom Elements</strong> and <strong>Shadow DOM</strong> are not supported in all popular browsers yet.</p></aside><p>In this step, we’ll quickly go over the steps to transpile our custom element code to be compatible with ES5 and to include the necessary Web Components polyfills.</p><h2><strong>Transpiling</strong></h2><p><code>random-greeter</code> element code contains ES6 classes and string literals and arrow functions. These features are great to use at author-time, but the code has to be transpiled using a tool like Babel so that it can run in browsers that only understand ES5 code. We’ll go ahead and use babel-cli and the babel-preset-es2015 preset do to just that.</p><p>If your project doesn’t have a <code>package.json</code> file just yet, go ahead an create one using either <code>npm</code> or <code>Yarn</code>. This will allow you to install the necessary packages:</p><pre><code>
 $ npm init
 
 # or, using Yarn
@@ -433,7 +433,7 @@ $ yarn add babel-cli babel-preset-es2015 crisper vulcanize rimraf --dev
     "vulcanize": "^1.16.0"
   }
 }
-</code></pre><p>Now you can go ahead and run the transpilation:</p><pre><code>
+</code></pre><p>Now you can go ahead and run the transpiling:</p><pre><code>
 $ npm run build
 
 # or, using Yarn
