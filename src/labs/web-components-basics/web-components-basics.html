@@ -86,7 +86,7 @@
 
       static get is() { return 'random-greeter' }
 
-      connectedCallback() {
+      connectedCallback() {                                                       ee how a web component can be extended
         console.log('random-greeter element added to the DOM!');
       }
     }
@@ -1140,7 +1140,7 @@ random-greeter {
 }
 </code></pre>
             </google-codelab-step>
-            <google-codelab-step label="Polyfills and Transpilation" duration="6">
+            <google-codelab-step label="Polyfills and Transpiling" duration="6">
                 <aside class="note">
                     <p>
                         We covered the basics of creating custom elements using Web Component specs, but our simple
@@ -1155,7 +1155,7 @@ random-greeter {
                     with ES5 and to include the necessary Web Components polyfills.
                 </p>
 
-                <h2><strong>Transpilation</strong></h2>
+                <h2><strong>Transpiling</strong></h2>
 
                 <p>
                     <code>random-greeter</code> element code contains ES6 classes and string literals and arrow
@@ -1218,7 +1218,7 @@ $ yarn add babel-cli babel-preset-es2015 crisper vulcanize rimraf --dev
 </code></pre>
 
                 <p>
-                    Now you can go ahead and run the transpilation:
+                    Now you can go ahead and run the transpiling:
                 </p>
 
                 <pre>
