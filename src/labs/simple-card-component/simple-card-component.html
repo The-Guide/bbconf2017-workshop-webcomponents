@@ -41,16 +41,14 @@
                 </ul>
             </google-codelab-step>
             <google-codelab-step label="Getting set up" duration="5">
-                <!--<h2><strong>Install Tools</strong></h2>-->
-
-                <!--<h2><strong>Project Set Up</strong></h2>-->
+                <h2><strong>Project Set Up</strong></h2>
 
                 <p>
-                    Fire up a code editor, and create two files <code>index.html</code>,
+                    Fire up a code editor, and create three files <code>index.html</code>,
                     <code>simple-card.html</code> and <code>simple-card.js</code>.
                 </p>
 
-                <h3>index.html</h3>
+                <h3>demo/index.html</h3>
 
                 <pre>
 <code>
@@ -61,8 +59,21 @@
         &lt;meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0"&gt;
         &lt;meta http-equiv="X-UA-Compatible" content="ie=edge"&gt;
         &lt;title&gt;Simple card component&lt;/title&gt;
+
+        &lt;style&gt;
+          body {
+            width: 90%;
+            max-width: 980px;
+            background-color: #f5f5f5;
+            margin: 0 auto 32px;
+          }
+        &lt;/style&gt;
+
     &lt;/head&gt;
     &lt;body&gt;
+      &lt;h1&gt;Example page of the simple-card&lt;/h1&gt;
+      &lt;h2&gt;An basic example&lt;/h2&gt;
+
     &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
@@ -94,7 +105,7 @@ customElements.define('simple-card',SimpleCard);
 
                 <ol type="1" start="1">
                     <li>Use an <a href="http://www.html5rocks.com/en/tutorials/webcomponents/imports/" target="_blank">HTML
-                        Import</a> to load it in <code>index.html</code>.
+                        Import</a> to load it in <code>demo/index.html</code>.
                     </li>
                     <li>Declare an instance of the element inside the <code>body</code>.</li>
                 </ol>
@@ -108,10 +119,23 @@ customElements.define('simple-card',SimpleCard);
         &lt;meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0,minimum-scale=1.0"&gt;
         &lt;meta http-equiv="X-UA-Compatible" content="ie=edge"&gt;
         &lt;title>Simple-card-component&lt;/title&gt;
-        &lt;link rel="import" href="simple-card.html">
+        &lt;link rel="import" href="../simple-card.html"&gt;
+
+        &lt;style&gt;
+          body {
+            width: 90%;
+            max-width: 980px;
+            background-color: #f5f5f5;
+            margin: 0 auto 32px;
+          }
+        &lt;/style&gt;
+
     &lt;/head&gt;
     &lt;body&gt;
-        &lt;simple-card&gt;&lt;/simple-card&gt;
+      &lt;h1&gt;Example page of the simple-card&lt;/h1&gt;
+      &lt;h2&gt;An basic example&lt;/h2&gt;
+
+      &lt;simple-card&gt;&lt;/simple-card&gt;
     &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
@@ -154,7 +178,8 @@ customElements.define('simple-card', SimpleCard);
 </code></pre>
                 <h3>bower.json</h3>
                 <p>
-                    Now that we use the Bbconf-lit-Element to extend we have to set this element as a dependency. Let's create a bower.json.
+                  Now that we use the Bbconf-lit-Element to extend we have to set this element as
+                  a dependency. Let's create a bower.json containing it.
                 </p>
 
                 <pre>
@@ -164,26 +189,21 @@ customElements.define('simple-card', SimpleCard);
   "main": "simple-card.html",
   "dependencies": {
     "bbconf2017-lithtml": "https://github.com/The-Guide/bbconf2017-lithtml.git"
-  },
-  "devDependencies": {
-    "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^2.0.0",
-    "web-component-tester": "Polymer/web-component-tester#^6.0.0",
-    "webcomponentsjs": "webcomponents/webcomponentsjs#^1.0.0"
   }
 }
 </code></pre>
             </google-codelab-step>
             <google-codelab-step label="Creating HTML Templates with Lit-HTML" duration="5">
                 <aside class="callout">
-                    <p>
-                        <strong>Lit-HTML</strong> has 4 main goals:
-                        <ol>
-                    <li>Efficient updates of previously rendered DOM.</li>
-                    <li>Expressiveness and easy access to the JavaScript state that needs to be injected into DOM.</li>
-                    <li>Standard JavaScript without required build steps, understandable by standards-compliant tools.</li>
-                    <li>Very small size.</li>
-                </ol>
-                    </p>
+                  <p>
+                    <strong>Lit-HTML</strong> has 4 main goals:
+                    <ol>
+                      <li>Efficient updates of previously rendered DOM.</li>
+                      <li>Expressiveness and easy access to the JavaScript state that needs to be injected into DOM.</li>
+                      <li>Standard JavaScript without required build steps, understandable by standards-compliant tools.</li>
+                      <li>Very small size.</li>
+                    </ol>
+                  </p>
                 </aside>
 
                 <h2><strong>How it works</strong></h2>
@@ -299,9 +319,9 @@ class SimpleCard extends Bbconf2017LitElement {
   }
   get bodyTemplate() {
     return html`
-      &lt;main id="main"&gt;
-        &lt;slot name="main" id="mainslot"&gt;&lt;/slot&gt;
-      &lt;/main&gt;
+      &lt;div id="body"&gt;
+        &lt;slot id="bodyslot"&gt;&lt;/slot&gt;
+      &lt;/div&gt;
   `;
   }
   get footerTemplate() {
@@ -330,16 +350,29 @@ customElements.define('simple-card', SimpleCard);
         &lt;meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0,minimum-scale=1.0"&gt;
         &lt;meta http-equiv="X-UA-Compatible" content="ie=edge"&gt;
         &lt;title>Simple-card-component&lt;/title&gt;
-        &lt;link rel="import" href="simple-card.html">
+        &lt;link rel="import" href="../simple-card.html">
+
+        &lt;style&gt;
+          body {
+            width: 90%;
+            max-width: 980px;
+            background-color: #f5f5f5;
+            margin: 0 auto 32px;
+          }
+        &lt;/style&gt;
+
     &lt;/head&gt;
     &lt;body&gt;
-        &lt;simple-card&gt;
-         &lt;h3 slot="header"&gt;Title&lt;/h3&gt;
-          &lt;div slot="main"&gt;
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis varius quam quam.
-          &lt;/div&gt;
-          &lt;div slot="footer"&gt;Footer&lt;/div&gt;
-        &lt;/simple-card&gt;
+      &lt;h1&gt;Example page of the simple-card&lt;/h1&gt;
+      &lt;h2&gt;An basic example&lt;/h2&gt;
+
+      &lt;simple-card&gt;
+       &lt;h3 slot="header"&gt;Title&lt;/h3&gt;
+        &lt;div&gt;
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis varius quam quam.
+        &lt;/div&gt;
+        &lt;div slot="footer"&gt;Footer&lt;/div&gt;
+      &lt;/simple-card&gt;
     &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
@@ -363,9 +396,9 @@ class SimpleCard extends Bbconf2017LitElement {
   }
   get bodyTemplate() {
     return html`
-      &lt;main id="main"&gt;
-        &lt;slot name="main" id="mainslot"&gt;&lt;/slot&gt;
-      &lt;/main&gt;
+      &lt;div id="body"&gt;
+        &lt;slot id="bodyslot"&gt;&lt;/slot&gt;
+      &lt;/div&gt;
   `;
   }
   get footerTemplate() {
@@ -393,23 +426,7 @@ customElements.define('simple-card', SimpleCard);
                 <p>
                   Our card shows the content but is still unstyled. Let's add some styling. In your <code>simple-card</code>
                   add a styling template the same way you created the other templates.
-                  It should contain a style tag and some basic styling on the <code>:host</code>.
-                  <pre>
-              :host {
-                background: #fff;
-                border-radius: 4px;
-                box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
-                            0 1px 5px 0 rgba(0, 0, 0, 0.12),
-                            0 3px 1px -2px rgba(0, 0, 0, 0.2);
-                position: relative;
-                display: block;
-                box-sizing: border-box;
-                line-height: 1.5;
-                font-weight: normal;
-                width: 100%;
-              }
-            </pre>
-                </p>
+                  It should contain a style tag and some basic styling on the <code>:host</code> element.
 
                 <pre>
 <code>
@@ -434,27 +451,8 @@ class SimpleCard extends Bbconf2017LitElement {
     `;
   }
 
-  get headerTemplate() {
-    return html`
-      &lt;header id="header"&gt;
-        &lt;slot name="header" id="headerslot"&gt;&lt;/slot&gt;
-      &lt;/header&gt;
-  `;
-  }
-  get bodyTemplate() {
-    return html`
-      &lt;main id="main"&gt;
-        &lt;slot name="main" id="mainslot"&gt;&lt;/slot&gt;
-      &lt;/main&gt;
-  `;
-  }
-  get footerTemplate() {
-    return html`
-      &lt;footer id="footer"&gt;
-        &lt;slot name="footer" id="footerslot"&gt;&lt;/slot&gt;
-      &lt;/footer&gt;
-  `;
-  }
+ ...
+
   render() {
     return html`
       ${this.styleTemplate}
@@ -470,68 +468,41 @@ customElements.define('simple-card', SimpleCard);
 </code></pre>
 
                 <p>
-                    Add now some styling on the header, main and footer:
-                  <pre>
-              #header ::slotted(*),
-              #main ::slotted(*),
-              #footer ::slotted(*){
-                 padding: 24px 24px;
-              }
-              #header {
-                color: inherit;
-              }
-              #header ::slotted(h1),
-              #header ::slotted(h2),
-              #header ::slotted(h3),
-              #header ::slotted(h4),
-              #header ::slotted(h5),
-              #header ::slotted(h6) {
-                margin-top: 0 !important;
-                margin-bottom: 0 !important;
-              }
-            </pre>
+                    Add now some styling on the header, body and footer:
                 </p>
-
-                <pre>
-<code>
-class SimpleCard extends Bbconf2017LitElement {
- get styleTemplate() {
-    return html`
+<pre><code>
+get styleTemplate() {
+ return html`
      &lt;style&gt;
-        :host {
-          background: #fff;
-          border-radius: 4px;
-          box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
-          0 1px 5px 0 rgba(0, 0, 0, 0.12),
-          0 3px 1px -2px rgba(0, 0, 0, 0.2);
-          position: relative;
-          display: block;
-          box-sizing: border-box;
-          line-height: 1.5;
-          font-weight: normal;
-          width: 100%;
-        }
-        #header ::slotted(*),
-        #main ::slotted(*),
-        #footer ::slotted(*){
-           padding: 24px 24px;
-        }
-        #header {
-          color: inherit;
-        }
-        #header ::slotted(h1),
-        #header ::slotted(h2),
-        #header ::slotted(h3),
-        #header ::slotted(h4),
-        #header ::slotted(h5),
-        #header ::slotted(h6) {
-          margin-top: 0 !important;
-          margin-bottom: 0 !important;
-        }
-      &lt;/style&gt;
-    `;
-  }
+
+    ...
+
+    #header ::slotted(*),
+    #body ::slotted(*),
+    #footer ::slotted(*){
+       padding: 24px 24px;
+    }
+    #header {
+      color: inherit;
+    }
+    #header ::slotted(h1),
+    #header ::slotted(h2),
+    #header ::slotted(h3),
+    #header ::slotted(h4),
+    #header ::slotted(h5),
+    #header ::slotted(h6) {
+      margin-top: 0 !important;
+      margin-bottom: 0 !important;
+    }
+
+    ...
+
+  &lt;/style&gt;
+`;
 </code></pre>
+              <p>
+                Check the differences in the browser.
+              </p>
             </google-codelab-step>
             <google-codelab-step label="Extending simple-card" duration="6">
                 <h2><strong>Extending</strong></h2>
