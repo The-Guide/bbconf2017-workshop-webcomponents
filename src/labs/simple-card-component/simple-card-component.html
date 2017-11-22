@@ -533,262 +533,133 @@ class SimpleCard extends Bbconf2017LitElement {
   }
 </code></pre>
             </google-codelab-step>
-            <google-codelab-step label="xxx" duration="6">
-                <h2><strong>Introduction</strong></h2>
+            <google-codelab-step label="Extending simple-card" duration="6">
+                <h2><strong>Extending</strong></h2>
 
                 <p>
-                    Shadow DOM removes the brittleness of building web apps. The brittleness comes from the global
-                    nature of HTML, CSS, and JS. For example, when you use a new HTML id/class, there's no telling if
-                    it will conflict with an existing name used by the page. Subtle bugs creep up, CSS specificity
-                    becomes a huge issue (!important all the things!), style selectors grow out of control, and
-                    performance can suffer.
+                  We have a very simple card component. It has some very generic features. Imagine that we
+                  want a specific card with a custom footer. How can we create that from the simple-card?
+                  It is easy, we can <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/extends" target="_blank">extend</a> the simple card.
                 </p>
 
                 <p>
-                    <strong>Shadow DOM fixes CSS and DOM</strong>. It introduces <strong>scoped styles</strong> to the
-                    web platform. Without tools or naming conventions, you can <strong>bundle CSS with markup</strong>,
-                    hide implementation details, and <strong>author self-contained components</strong> in vanilla
-                    JavaScript.
+                  We are now creating a new component, the extended-card. Create <code>extended-card.html</code> and <code>extended-card.js</code>.
                 </p>
-
-                <p>
-                    Shadow DOM is designed as a tool for building component-based apps. Therefore, it brings solutions
-                    for common problems in web development:
-                </p>
-
-                <ul>
-                    <li>
-                        <strong>Isolated DOM</strong>: A component's DOM is self-contained (e.g.
-                        document.querySelector() won't return
-                        nodes in the component's shadow DOM).
-                    </li>
-                    <li>
-                        <strong>Scoped CSS</strong>: CSS defined inside shadow DOM is scoped to it. Style rules don't
-                        leak out and page styles don't bleed in.
-                    </li>
-                    <li>
-                        <strong>Composition</strong>: Design a declarative, markup-based API for your component.
-                    </li>
-                    <li>
-                        <strong>Simplifies CSS</strong>: Scoped DOM means you can use simple CSS selectors, more generic
-                        id/class names, and not worry about naming conflicts.
-                    </li>
-                    <li>
-                        <strong>Productivity</strong>: Think of apps in chunks of DOM rather than one large (global)
-                        page.
-                    </li>
-                </ul>
-
-
-                <h2><strong>What is shadow DOM</strong></h2>
-
-                <p>
-                    Shadow DOM is just normal DOM with two differences:
-                </p>
-
-                <ol>
-                    <li>how it's created/used and</li>
-                    <li>how it behaves in relation to the rest of the page.</li>
-                </ol>
-
-                <p>
-                    Normally, DOM nodes are created and appended as children of another element. With shadow DOM, a
-                    create a scoped DOM tree that's attached to the element, but separate from its actual children. This
-                    scoped subtree (named shadow tree) is created. The element it's attached to its shadow host.
-                    Anything added in the shadow tree becomes local to the hosting element, including
-                    <code>&lt;style&gt;</code>. This is how shadow DOM achieves CSS style scoping.
-                </p>
-
-                <h2><strong>Creating shadow DOM</strong></h2>
-
-                <p>
-                    A <strong>shadow root</strong> is a document fragment that gets attached to a “host” element. The
-                    act of attaching a shadow root is how the element gains its shadow DOM. To create shadow DOM for an
-                    element, call <code>element.attachShadow()</code>:
-                </p>
+                <h3>extended-card.html</h3>
 
                 <pre>
 <code>
-const header = document.createElement('header');
-const shadowRoot = header.attachShadow({mode: 'open'});
-shadowRoot.innerHTML = '&lt;h1&gt;Hello Shadow DOM&lt;/h1&gt;'; // Could also use appendChild().
+&lt;link rel="import" href="bower_components/simple-card/simple-card.html"&gt;
+&lt;script src="extended-card.js"&gt;&lt;/script&gt;
+</code></pre>
+              <h3>extended-card.js</h3>
+              <pre>
+<code>
+class ExtendedCard extends SimpleCard {
+ }
 
-// header.shadowRoot === shadowRoot
-// shadowRoot.host === header
+customElements.define('extended-card', ExtendedCard);
 </code></pre>
 
                 <p>
-                    Shadow DOM is particularly useful when creating custom elements. Use shadow DOM to compartmentalize
-                    an element's HTML, CSS, and JS, thus producing a "web component".
+                    First, we want to add styling to the simple-card. We want to make the heading text
+                  orangered and increase the fontsize. We want to use Roboto font. We want to keep the styling from <code>simple-card</code>.
                 </p>
-
-                <p>A custom element attaches shadow DOM to itself, encapsulating its DOM/CSS <code>this.attachShadow({mode:
-                    'open'});</code></p>
-
-                <h3>Applying to <code>random-greeter</code></h3>
-
-                <p>
-                    Before creating a shadow root for the <code>random-greeter</code> component let's simulate possible
-                    conflicts.
-                </p>
-
-                <p>
-                    Inside the <code>index.html</code> file add the following <code>style</code> block:
-                </p>
-
-                <pre>
+              <h3>extended-card.js</h3>
+<pre>
 <code>
-&lt;style&gt;
-    h1 {
-        color: #ff6600 !important;
+  class ExtendedCard extends SimpleCard {
+    get styleTemplate() {
+      return html`
+          ${super.styleTemplate}
+          &lt;style&gt;
+          :host {
+            font-family: Roboto;
+          }
+          #header {
+            color: orangered;
+            font-size: 1.4em;
+
+          }
+
+          &lt;/style&gt;
+        `;
     }
-&lt;/style&gt;
+  }
+
+  customElements.define('extended-card', ExtendedCard);
 </code></pre>
 
-                <p>
-                    and refresh the browser. Is this something that could happen? Of course, it is. Now let's fix it by
-                    creating a <code>shadow root</code>
+                <p>Create an index.html to view the component.
                 </p>
-
+                <h3>Index.html</h3>
                 <pre>
 <code>
-...
-constructor() {
-    ...
+&lt;!doctype html&gt;
 
-    this._root = this.attachShadow({"mode": "open"});
-}
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="utf-8"&gt;
+  &lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt;
+  &lt;meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes"&gt;
+  &lt;title&gt;Extended-card Demo&lt;/title&gt;
+  &lt;script src="../../webcomponentsjs/webcomponents-lite.js">&lt;/script&gt;
 
-connectedCallback() {
-    ...
-    //this.appendChild($content);
-    this._root.appendChild($content);
+  &lt;link rel="import" href="../extended-card.html"&gt;
 
-    //this._$greet = this.querySelector("#greet");
-    this._$greet = this._root.querySelector("#greet");
+    &lt;/head&gt;
+    &lt;body unresolved style="width: 90%; max-width: 980px; margin:0 auto;"&gt;
 
-    ...
-}
+    &lt;h1 class="sr-only"&gt;Example page of the extended-card&lt;/h1&gt;
+
+  &lt;h2 class="font-b-xl"&gt;An basic example&lt;/h2&gt;
+
+  &lt;extended-card last-updated="6"&gt;
+    &lt;h3 slot="header"&gt;Title&lt;/h3&gt;
+    &lt;div&gt;
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis varius quam quam. Praesent gravida urna id
+        nunc luctus, nec varius tortor tristique. Mauris non sem vel magna consectetur sodales. Aenean ut urna
+        sodales, auctor elit condimentum, cursus neque. Sed quam mauris, ultricies ac congue ut, volutpat
+        volutpat dui. Quisque sagittis diam et justo fringilla condimentum. Cras ut dignissim dolor, nec
+        efficitur mi. Praesent vitae consectetur odio. Donec lectus nulla, tristique eget lacinia consequat,
+        porttitor in arcu. Fusce mattis nec leo nec vulputate. In hac habitasse platea dictumst.
+  &lt;/div&gt;
+
+  &lt;/extended-card&gt;
+  &lt;/body&gt;
+  &lt;/html&gt;
 </code></pre>
 
-                <h2><strong>Composition and slots</strong></h2>
 
-                <p>
-                    Shadow DOM composes different DOM trees together using the <code>&lt;slot&gt;</code> element. Slots
-                    are placeholders inside your component that users can fill with their own markup. By defining one or
-                    more slots, you invite outside markup to render in your component's shadow DOM. Essentially, you're
-                    saying "Render the user's markup over here".
-                </p>
-
-                <aside class="callout">
-                    <p>
-                        <strong>Note</strong>: Slots are a way of creating a "declarative API" for a web component.
-                        They mix-in the user's DOM to help render the overall component, thus, composing different DOM
-                        trees together.
-                    </p>
-                </aside>
-
-                <p>
-                    Elements are allowed to "cross" the shadow DOM boundary when a &lt;slot&gt; invites them in. These
-                    elements are called <strong>distributed nodes</strong>. Conceptually, distributed nodes can seem a
-                    bit bizarre. Slots don't physically move DOM; they render it at another location inside the shadow
-                    DOM.
-                </p>
-
-                <p>
-                    A component can define zero or more slots in its shadow DOM. Slots can be empty or provide fallback
-                    content. If the user doesn't provide light DOM content, the slot renders its fallback content.
-                </p>
-
-                <p>
-                    You can also create named slots. Named slots are specific holes in your shadow DOM that users
-                    reference by name.
-                </p>
-
-                <pre>
-<code>
-&lt;!-- Default slot. If there's more than one default slot, the first is used. --&gt;
-&lt;slot&gt;&lt;/slot&gt;
-
-&lt;slot&gt;fallback content&lt;/slot&gt; &lt;!-- default slot with fallback content --&gt;
-
-&lt;slot&gt; &lt;!-- default slot entire DOM tree as fallback --&gt;
-  &lt;h2&gt;Title&lt;/h2&gt;
-    &lt;summary&gt;Description text&lt;/summary&gt;
-&lt;/slot&gt;
-
-&lt;!-- Named slot use slot="title" when referencing--&gt;
-&lt;slot name="title"&gt;&lt;/slot&gt;
-</code></pre>
-
-                <h3>Applying to <code>random-greeter</code></h3>
-
-                <p>Let's add two slots to the <code>random-greeter</code> component, a named and a default one</p>
-
-                <pre>
-<code>
-&lt;div class="greeter-frame"&gt;
-    &lt;slot name="top"&gt;&lt;/slot&gt;
-    &lt;h1 id="greet">&lt;/h1>
-    &lt;slot class="bottom"&gt;&lt;/slot&gt;
-&lt;/div&gt;
-</code></pre>
-
-                <p>Now in <code>index.html</code></p>
-
-                <pre>
-<code>
-&lt;random-greeter&gt;
-    &lt;marquee behavior="alternate" direction="right" slot="top"&gt;#BBConf rulz!!!&lt;/marquee&gt;
-    &lt;ul&gt;
-        &lt;li&gt;Something&lt;/li&gt;
-        &lt;li&gt;More something&lt;/li&gt;
-        &lt;li&gt;About&lt;/li&gt;
-    &lt;/ul&gt;
-&lt;/random-greeter&gt;
-</code></pre>
-
-                <h2><strong>Exercise</strong></h2>
-
-                <p>Experiment with <code>slots</code></p>
             </google-codelab-step>
-            <google-codelab-step label="xx" duration="6">
-                <aside class="note">
-                    <p>
-                        Thanks to Shadow DOM, it’s very easy to style your Web Components using simple CSS selectors. In
-                        this step we’ll cover a few extra styling options available to us to style custom elements. On
-                        top of that, we’ll see how to allow the creation of styling hooks that make it easy for a custom
-                        element’s user to customize the style from the outside.
-                    </p>
-                </aside>
+            <google-codelab-step label="Create custom footer" duration="6">
 
-                <h2><strong>Styling a Custom Element With <code>:host</code></strong></h2>
+
+                <h2><strong>Create a custom footer</strong></h2>
 
                 <p>
-                    The <code>:host</code> selector makes it easy to select and style the custom element itself, meaning
-                    the shell of the element. Let’s add some styles to our <code>random-greeter</code> element:
-                </p>
-
+                  This card element we are creating should have a fixed footer like <a href="https://v4-alpha.getbootstrap.com/components/card/" target="_blank">this (scroll down to card groups)</a> bootstrapped card footer.
+                  The background color should be light grey and the text should be centered. Please create a new <code>footerTemplate</code> with the text "Last updated 5 minutes ago" and add styles too. Please add this styles:
+                <pre>
+<code> #footer {
+padding: calc(var(--spacer-vertical, 8px) * 3) calc(var(--spacer-horizontal, 8px) * 3);
+border-top: 1px solid var(--divider-color, #d5d5d5);
+background-color: #f2f2f2;
+font-size: 0.9em;
+text-align: center;
+color: #8c8c8c;
+}</code>
+            </pre>
+                <h3>extended-card.js</h3>
                 <pre>
 <code>
-:host {
-    all: initial;
-    display: block;
-    contain: content;
-    text-align: center;
-    padding: 20px;
-    background-color: #FF6600;
-    max-width: 500px;
-    margin: 0 auto;
-    border-radius: 8px;
-    transition: transform .2s ease-out;
-}
-:host([hidden]) {
-    display: none;
-}
-:host(:hover) {
-    transform: scale(1.1);
-}
+  get footerTemplate() {
+    return html`
+    &lt;footer id="footer"&gt;
+    Last updated 5 mins ago
+    &lt;/footer&gt;
+    `;}
+  }
 </code></pre>
 
                 <aside class="callout">
