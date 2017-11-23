@@ -44,13 +44,34 @@
                 <h2><strong>Project Set Up</strong></h2>
 
                 <p>
-                    Fire up a code editor, and create three files <code>index.html</code>,
-                    <code>simple-card.html</code> and <code>simple-card.js</code>.
+                  Fire up a code editor, and create five files <code>simple-card.html</code>,
+                  <code>simple-card.js</code>, <code>demo/index.html</code>,
+                  <code>bower.json</code> and a <code>package.json</code>.
                 </p>
 
-                <h3>demo/index.html</h3>
+                <h3>simple-card.html</h3>
 
                 <pre>
+<code>
+&lt;link rel="import" href="../bbconf2017-lithtml/bbconf2017-lit-element.html"&gt;
+&lt;script src="simple-card.js"&gt;&lt;/script&gt;
+
+</code></pre>
+                <h3>simple-card.js</h3>
+
+                <pre>
+<code>
+class SimpleCard extends HTMLElement {
+    connectedCallback() {
+        console.log('simple-card element added to the DOM!');
+      }
+    }
+customElements.define('simple-card',SimpleCard);
+
+</code></pre>
+              <h3>demo/index.html</h3>
+
+              <pre>
 <code>
 &lt;!doctype html&gt;
 &lt;html lang="en"&gt;
@@ -77,26 +98,53 @@
 &lt;/html&gt;
 </code></pre>
 
-                <h3>simple-card.html</h3>
+              <h3>package.json</h3>
 
-                <pre>
+              <pre>
 <code>
-&lt;link rel="import" href="../bbconf2017-lithtml/bbconf2017-lit-element.html"&gt;
-&lt;script src="simple-card.js"&gt;&lt;/script&gt;
-
+{
+  "name": "simple-card",
+  "version": "0.0.1",
+  "description": "",
+  "main": "simple-card.html",
+  "devDependencies": {
+    "polyserve": "0.23.0"
+  },
+  "scripts": {
+    "start": "polyserve -o"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/The-Guide/bbconf2017-simple-card-component.git"
+  },
+  "engines": {
+    "node": ">=6.0"
+  }
+}
 </code></pre>
-                <h3>simple-card.js</h3>
 
-                <pre>
+              <h3>bower.json</h3>
+
+              <pre>
 <code>
-class SimpleCard extends HTMLElement {
-    connectedCallback() {
-        console.log('simple-card element added to the DOM!');
-      }
-    }
-customElements.define('simple-card',SimpleCard);
-
+{
+  "name": "simple-card",
+  "main": "simple-card.html",
+  "dependencies": {
+    "bbconf2017-lithtml": "https://github.com/The-Guide/bbconf2017-lithtml.git"
+  },
+  "devDependencies": {
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^1.0.0"
+  }
+}
 </code></pre>
+                <p>
+                  Install the needed dependencies as follows:
+                  <ul>
+                    <li>Run <code>npm install</code> to install the node dependencies.</li>
+                    <li>Run <code>bower install</code> to install the bower dependencies.</li>
+                  </ul>
+                </p>
 
                 <h3>Using the <code>simple-card</code> component</h3>
 
@@ -142,12 +190,14 @@ customElements.define('simple-card',SimpleCard);
                 <h3>Preview the component</h3>
 
                 <p>
-                    Just open the <code>index.html</code> page in the browser, open the developer tools a look at the
-                    <code>Console</code> tab where you should see:
-                </p>
+                  Run <code>npm start</code> to run your component in the browser.
+                  Just open the <code>demo/index.html</code> page in the browser, open the developer tools a look at the
+                  <code>Console</code> tab where you should see:
 
-                <p style="display:flex; justify-content: center; align-items: center;">
-                    <img src="[[rootPath]]images/labs/web-components-basics/console-log.png"></p>
+                  <div style="padding: 10px; text-align: center; background-color: #f5f5f5;">
+                    "simple-card element added to the DOM!"
+                  </div>
+                </p>
             </google-codelab-step>
             <google-codelab-step label="Introducing Custom Elements" duration="5">
                 <h2>Adding litHTML</h2>
@@ -530,7 +580,16 @@ class ExtendedCard extends SimpleCard {
 
 customElements.define('extended-card', ExtendedCard);
 </code></pre>
-
+                <aside class="note">
+                  <p>
+                    Also create a <code>package.json</code> and a <code>bower.json</code> just like
+                    we did in the <code>simple-card</code>, and install all dependencies. This time
+                    we can use the
+                    <a href="https://github.com/The-Guide/bbconf2017-simple-card-component.git">
+                      <code>simple-card</code>
+                    </a> as a bower dependency.
+                  </p>
+                </aside>
                 <p>
                   First, we want to extend some of the styling of the simple-card:
                   <ul>
