@@ -72,7 +72,6 @@
     &lt;/head&gt;
     &lt;body&gt;
       &lt;h1&gt;Example page of the simple-card&lt;/h1&gt;
-      &lt;h2&gt;An basic example&lt;/h2&gt;
 
     &lt;/body&gt;
 &lt;/html&gt;
@@ -435,17 +434,17 @@ class SimpleCard extends Bbconf2017LitElement {
     return html`
      &lt;style&gt;
         :host {
-          background: #fff;
-          border-radius: 4px;
-          box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
-          0 1px 5px 0 rgba(0, 0, 0, 0.12),
-          0 3px 1px -2px rgba(0, 0, 0, 0.2);
+          width: 100%;
           position: relative;
           display: block;
+          background: #ffffff;
+          border-radius: 4px;
+          box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+                      0 1px 5px 0 rgba(0, 0, 0, 0.12),
+                      0 3px 1px -2px rgba(0, 0, 0, 0.2);
           box-sizing: border-box;
           line-height: 1.5;
           font-weight: normal;
-          width: 100%;
         }
       &lt;/style&gt;
     `;
@@ -479,8 +478,8 @@ get styleTemplate() {
 
     #header ::slotted(*),
     #body ::slotted(*),
-    #footer ::slotted(*){
-       padding: 24px 24px;
+    #footer ::slotted(*) {
+      padding: 24px 24px;
     }
     #header {
       color: inherit;
@@ -504,7 +503,7 @@ get styleTemplate() {
                 Check the differences in the browser.
               </p>
             </google-codelab-step>
-            <google-codelab-step label="Extending simple-card" duration="6">
+            <google-codelab-step label="Extending simple-card" duration="8">
                 <h2><strong>Extending</strong></h2>
 
                 <p>
@@ -520,7 +519,7 @@ get styleTemplate() {
 
                 <pre>
 <code>
-&lt;link rel="import" href="bower_components/simple-card/simple-card.html"&gt;
+&lt;link rel="import" href="../simple-card/simple-card.html"&gt;
 &lt;script src="extended-card.js"&gt;&lt;/script&gt;
 </code></pre>
               <h3>extended-card.js</h3>
@@ -533,37 +532,45 @@ customElements.define('extended-card', ExtendedCard);
 </code></pre>
 
                 <p>
-                    First, we want to add styling to the simple-card. We want to make the heading text
-                  orangered and increase the fontsize. We want to use Roboto font. We want to keep the styling from <code>simple-card</code>.
+                  First, we want to extend some of the styling of the simple-card:
+                  <ul>
+                    <li>Change the heading text to orangered</li>
+                    <li>increase the fontsize</li>
+                    <li>Make use of the Roboto font</li>
+                  </ul>
+                  We want to keep all the rest of the styling from <code>simple-card</code>.
                 </p>
+
               <h3>extended-card.js</h3>
 <pre>
 <code>
   class ExtendedCard extends SimpleCard {
     get styleTemplate() {
       return html`
-          ${super.styleTemplate}
-          &lt;style&gt;
+        ${super.styleTemplate}
+        &lt;style&gt;
           :host {
             font-family: Roboto;
           }
+
           #header {
             color: orangered;
             font-size: 1.4em;
-
           }
-
-          &lt;/style&gt;
-        `;
+        &lt;/style&gt;
+      `;
     }
   }
 
   customElements.define('extended-card', ExtendedCard);
 </code></pre>
 
-                <p>Create an index.html to view the component.
+                <p>
+                  Create a <code>demo/index.html</code> to view the component, just like we did in
+                  the <code>simple-dialog</code>.
                 </p>
-                <h3>Index.html</h3>
+
+                <h3>demo/index.html</h3>
                 <pre>
 <code>
 &lt;!doctype html&gt;
@@ -574,438 +581,209 @@ customElements.define('extended-card', ExtendedCard);
   &lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt;
   &lt;meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes"&gt;
   &lt;title&gt;Extended-card Demo&lt;/title&gt;
-  &lt;script src="../../webcomponentsjs/webcomponents-lite.js">&lt;/script&gt;
 
   &lt;link rel="import" href="../extended-card.html"&gt;
 
-    &lt;/head&gt;
-    &lt;body unresolved style="width: 90%; max-width: 980px; margin:0 auto;"&gt;
+   &lt;style&gt;
+    body {
+      width: 90%;
+      max-width: 980px;
+      background-color: #f5f5f5;
+      margin: 0 auto 32px;
+    }
+   &lt;/style&gt;
 
-    &lt;h1 class="sr-only"&gt;Example page of the extended-card&lt;/h1&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Example page of the extended-card&lt;/h1&gt;
 
-  &lt;h2 class="font-b-xl"&gt;An basic example&lt;/h2&gt;
+  &lt;h2&gt;An basic example&lt;/h2&gt;
 
   &lt;extended-card last-updated="6"&gt;
     &lt;h3 slot="header"&gt;Title&lt;/h3&gt;
     &lt;div&gt;
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis varius quam quam. Praesent gravida urna id
-        nunc luctus, nec varius tortor tristique. Mauris non sem vel magna consectetur sodales. Aenean ut urna
-        sodales, auctor elit condimentum, cursus neque. Sed quam mauris, ultricies ac congue ut, volutpat
-        volutpat dui. Quisque sagittis diam et justo fringilla condimentum. Cras ut dignissim dolor, nec
-        efficitur mi. Praesent vitae consectetur odio. Donec lectus nulla, tristique eget lacinia consequat,
-        porttitor in arcu. Fusce mattis nec leo nec vulputate. In hac habitasse platea dictumst.
-  &lt;/div&gt;
-
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis varius quam quam. Praesent gravida urna id
+      nunc luctus, nec varius tortor tristique. Mauris non sem vel magna consectetur sodales. Aenean ut urna
+      sodales, auctor elit condimentum, cursus neque. Sed quam mauris, ultricies ac congue ut, volutpat
+      volutpat dui. Quisque sagittis diam et justo fringilla condimentum. Cras ut dignissim dolor, nec
+      efficitur mi. Praesent vitae consectetur odio. Donec lectus nulla, tristique eget lacinia consequat,
+      porttitor in arcu. Fusce mattis nec leo nec vulputate. In hac habitasse platea dictumst.
+    &lt;/div&gt;
   &lt;/extended-card&gt;
-  &lt;/body&gt;
-  &lt;/html&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
 </code></pre>
 
 
             </google-codelab-step>
-            <google-codelab-step label="Create custom footer" duration="6">
+            <google-codelab-step label="Create custom footer" duration="10">
 
 
                 <h2><strong>Create a custom footer</strong></h2>
 
                 <p>
-                  This card element we are creating should have a fixed footer like <a href="https://v4-alpha.getbootstrap.com/components/card/" target="_blank">this (scroll down to card groups)</a> bootstrapped card footer.
-                  The background color should be light grey and the text should be centered. Please create a new <code>footerTemplate</code> with the text "Last updated 5 minutes ago" and add styles too. Please add this styles:
+                  This card element we are creating should have a fixed footer like <a href="https://v4-alpha.getbootstrap.com/components/card/#header-and-footer" target="_blank">this (scroll down to the footer example)</a> bootstrapped card footer.
+                  The background color should be light orange and the text should be centered. Please create a new <code>footerTemplate</code> with the text "Last updated 5 minutes ago" and add styles too. Please add this styles:
                 <pre>
-<code> #footer {
-padding: calc(var(--spacer-vertical, 8px) * 3) calc(var(--spacer-horizontal, 8px) * 3);
-border-top: 1px solid var(--divider-color, #d5d5d5);
-background-color: #f2f2f2;
-font-size: 0.9em;
-text-align: center;
-color: #8c8c8c;
-}</code>
+<code>
+  #footer {
+    border-top: 1px solid #d5d5d5;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    background-color: #ffeedd;
+    font-size: 1em;
+    text-align: center;
+    color: grey;
+    padding: 4px 24px;
+  }
+</code>
             </pre>
-                <h3>extended-card.js</h3>
+                <p>And add the following template:</p>
                 <pre>
 <code>
   get footerTemplate() {
     return html`
     &lt;footer id="footer"&gt;
-    Last updated 5 mins ago
+      Last updated 5 mins ago.
     &lt;/footer&gt;
     `;}
   }
 </code></pre>
+              <p>Now we see fancy footers with the info that it is updated 5 minutes ago. But of course it would be nice to set this dynamically.</p>
 
-                <aside class="callout">
-                    <p>
-                        Remove the outer <code>div</code> with the <code>greeter-frame</code> class and its associated
-                        styling.
-                    </p>
-                </aside>
+              <h2>Update the footer dynamically</h2>
 
-                <ul>
-                    <li>
-                        We set <code>all: initial</code> to reset all global style values so that they don’t affect our
-                        element’s styles. Note that this should be the first property that you set in your CSS rule,
-                        otherwise what follows could be reset too.
-                    </li>
-                    <li>
-                        By default, custom elements are set to <code>display: inline</code>, so here we specify that it
-                        should be <code>display: block</code> instead.
-                    </li>
-                    <li>
-                        As you can see, the <code>:host</code> selector can also be used as a function to select only
-                        the element if it matches the provided selector. We use that here to set <code>display:
-                        none</code> on the element if has the hidden attribute.
-                    </li>
-                    <li>
-                        We also use a new CSS property, <code>contain</code>, to hint to the CSS engine that the styles
-                        are contained
-                        and independent. This can help with layout performance in the browsers that support it.
-                    </li>
-                </ul>
-
-                <p>
-                    <strong>Note</strong> that if a custom element is styled externally by the user of the element with
-                    something like this…
-                </p>
-
-                <pre>
+              <p>First of all we need a property list with one property <code>lastUpdated</code>, which we can add to the <code>extended-card</code></p>
+              <pre>
 <code>
-random-greeter {
-  background: none;
-}
-</code></pre>
-
-                <p>
-                    …the external styles will always win if they collide with the ones provided with <code>:host</code>.
-                    So in that case, our element wouldn’t have its background color anymore.
-                </p>
-
-                <h2><strong>Theming Using <code>:host-context</code></strong></h2>
-
-                <p>
-                    We can also use a <code>:host-context()</code> selector that will select our custom element only if
-                    it or any of its ancestors match the provided selector. This makes it really easy to style your
-                    element differently if, say, the element has the <code>dark</code> or <code>light</code> class:
-                </p>
-
-                <pre>
-<code>
-:host-context(.dark) {
-    background-color: #e65c00;
-}
-
-:host-context(.light) {
-    background-color: #e65c00;
-}
-</code></pre>
-
-                <h2><strong>Style Hooks</strong></h2>
-
-                <p>
-                    So far we’ve seen how we can easily style a custom element from within, but what if we want to let
-                    the user of the element customize the styles without having to modify the element? This is where
-                    <code>CSS custom properties come</code> in.
-                </p>
-
-                <p>
-                    In <code>random-greeter</code>' element’s style definition, you’d use the custom properties like
-                    this:
-                </p>
-
-                <pre>
-<code>
-:host {
-    ...
-    background-color: var(--var-bg-color, #FF6600);
-    ...
-}
-
-...
-
-h1 {
-    ...
-    color: var(--var-color, #ffffff);
-
-    @apply --greeter-styles;
-}
-</code></pre>
-
-                <p>
-                    With this in place, our default colors will be used if variables are not defined, and now the colors
-                    can be customized in page’s style using something like this:
-                </p>
-
-                <pre>
-<code>
-random-greeter {
-    --var-bg-color: navy;
-    --var-color: green;
-
-    --greeter-styles: {
-        font-family: "Bauhaus 93";
-        font-size: 40px;
-        border: dotted 5px yellow;
+static get properties() {
+  return {
+    lastUpdated: {
+      type: String,
+      value: '',
+      reflectToAttribute: 'last-updated',
     }
+  };
 }
-</code></pre>
+</code>
+              </pre>
 
-                <h2><strong>Styling distributed nodes</strong></h2>
-
-                <p>
-                    <code>::slotted(&lt;compound-selector&gt;)</code> matches nodes that are distributed into a
-                    &lt;slot&gt;.
-                </p>
-
-                <pre>
+              <aside class="note">
+                <p>Be aware that we created a new property list. If the simple-card had a property-list we would override it. If you want to extend use it like this:
+                  <pre>
 <code>
-::slotted(marquee) {
-    color: yellow;
-    font-size: 20px;
-}
-
-.bottom::slotted(*) {
-    text-align: left;
-    color: #ffffff;
-}
-</code></pre>
-            </google-codelab-step>
-            <google-codelab-step label="xx" duration="6">
-                <aside class="note">
-                    <p>
-                        We covered the basics of creating custom elements using Web Component specs, but our simple
-                        custom element is not yet production-ready because of the use of new JavaScript features and the
-                        fact that <strong>Custom Elements</strong> and <strong>Shadow DOM</strong> are not supported in
-                        all popular browsers yet.
-                    </p>
-                </aside>
-
-                <p>
-                    In this step, we’ll quickly go over the steps to transpile our custom element code to be compatible
-                    with ES5 and to include the necessary Web Components polyfills.
+  return Object.assign(super.properties, {
+    myNewProperty: {
+      type: String,
+      value: 'default'
+    }
+  });
+</code>
+                  </pre>
                 </p>
+              </aside>
 
-                <h2><strong>Transpiling</strong></h2>
+              <p>The next step is to make use of this property, so we change our <code>footerTemplate</code> with the following codesnippet:</p>
 
-                <p>
-                    <code>random-greeter</code> element code contains ES6 classes and string literals and arrow
-                    functions. These features are great to use at author-time, but the code has to be transpiled using a
-                    tool like Babel so that it can run in browsers that only understand ES5 code. We’ll go ahead and use
-                    babel-cli and the babel-preset-es2015 preset do to just that.
-                </p>
-
-                <p>
-                    If your project doesn’t have a <code>package.json</code> file just yet, go ahead an create one using
-                    either <code>npm</code> or <code>Yarn</code>. This will allow you to install the necessary
-                    packages:
-                </p>
-
-                <pre>
+              <pre>
 <code>
-$ npm init
-
-# or, using Yarn
-$ yarn init
-</code></pre>
-
-                <p>
-                    Once this is done, you can go ahead and install the necessary packages:
-                </p>
-
-                <pre>
-<code>
-$ npm install babel-cli babel-preset-es2015 crisper vulcanize rimraf --save-dev
-
-# or, using Yarn
-$ yarn add babel-cli babel-preset-es2015 crisper vulcanize rimraf --dev
-</code></pre>
-
-                <p>
-                    We’ll output our transpiled code into a <code>dist</code> folder, so you can go ahead and create
-                    that folder at the root of your project. Now you can some scripts script to the
-                    <strong>package.json</strong> file that runs Babel with the es2015 preset and outputs the result in
-                    the <strong>dist</strong> folder:
-                </p>
-
-                <pre>
-<code>
-{
-    ...
-  "scripts": {
-    "clean": "rimraf dist",
-    "prebuild": "npm run clean -s && mkdir dist",
-    "build:vulcanize": "vulcanize random-greeter.html --inline-script --inline-css | crisper -h dist/random-greeter.html -j dist/random-greeter.js",
-    "build": "npm run build:vulcanize && babel --presets es2015 dist/random-greeter.js --out-file dist/random-greeter.js"
-  },
-  "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-preset-es2015": "^6.24.1",
-    "crisper": "^2.1.1",
-    "rimraf": "^2.6.2",
-    "vulcanize": "^1.16.0"
+  get footerTemplate() {
+   return html`
+   &lt;footer id="footer"&gt;
+    Last updated ${this.lastUpdated} mins ago.
+   &lt;/footer&gt;
+   `;}
   }
-}
-</code></pre>
+</code>
+              </pre>
 
-                <p>
-                    Now you can go ahead and run the transpiling:
-                </p>
+              <p>And of course we need to add this feature to the <code>demo/index.html</code>.</p>
 
-                <pre>
+              <pre>
 <code>
-$ npm run build
+  &lt;extended-card last-updated="6"&gt;
+    ...
+  &lt;/extended-card&gt;
+</code>
+              </pre>
 
-# or, using Yarn
-$ yarn build
-</code></pre>
+              <h2>Create a fallback</h2>
+              <p>
+                We also need a fallback if no <code>lastUpdated</code> attribute is set. First we
+                create a second <code>extended-card</code> in our <code>demo/index.html</code> file.
+              </p>
 
-                <h2><strong>Polyfills</strong></h2>
-
-                <p>
-                    Polyfills are small plugins that implement a feature to replace a missing native implementation for
-                    browsers that don’t have support yet. For Web Components, we’ll need polyfills for Custom Elements,
-                    Shadow DOM and the template element.
-                </p>
-
-                <p>
-                    There’s also a loader available, <code>webcomponents-loader.js</code>, that will perform some
-                    feature detection and include the necessary polyfills on the fly. Using the loader is probably the
-                    simplest way to get everything working, and this is what we’ll use here for our example.
-                </p>
-
-                <p>
-                    Custom elements need to be defined using ES6 classes that extend <code>HTMLElement</code>, but now
-                    we’re using transpiled code that has the class syntax stripped away. We’ll need to use a file called
-                    <code>custom-elements-es5-adapter.js</code> to fix that for us.
-                </p>
-
-                <p>
-                    Simply install the <code>@webcomponents/webcomponentsjs</code> package into your project using
-                    <code>npm</code> or <code>yarn</code>. This will install the necessary files in the node_modules
-                    folder:
-                </p>
-
-                <pre>
+              <pre>
 <code>
-$ npm install @webcomponents/webcomponentsjs --save
+  &lt;h2&gt;An example without last-updated time stamp&lt;/h2&gt;
+  &lt;extended-card&gt;
+    &lt;p&gt;
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis varius quam quam. Praesent
+      gravida urna id nunc luctus, nec varius tortor tristique. Mauris non sem vel magna consectetur
+      sodales. Aenean ut urna sodales, auctor elit condimentum, cursus neque. Sed quam mauris,
+      ultricies ac congue ut, volutpat  volutpat dui. Quisque sagittis diam et justo fringilla
+      condimentum. Cras ut dignissim dolor, nec efficitur mi. Praesent vitae consectetur odio.
+      Donec lectus nulla, tristique eget lacinia consequat, porttitor in arcu. Fusce mattis nec leo
+      nec vulputate. In hac habitasse platea dictumst.
+    &lt;/p&gt;
+  &lt;/extended-card&gt;
+</code>
+              </pre>
 
-# or, using Yarn
-$ yarn add npm install @webcomponents/webcomponentsjs
-</code></pre>
+              <p>This will give a wrong message without a time.</p>
 
-                <p>
-                    Now, in your page’s head, include <code>custom-elements-es5-adapter.js</code> and
-                    <code>webcomponents-loader.js</code>:
-                </p>
+              <p>We need to create a backup message if no last-updated time is provided.</p>
 
-                <pre>
+              <pre>
 <code>
-&lt;script src="node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js"&gt;&lt;/script&gt;
-&lt;script src="node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"&gt;&lt;/script&gt;
-</code></pre>
+  get footerTemplate() {
+    if (this.lastUpdated) {
+    return html`
+    &lt;footer id="footer"&gt;
+      Last updated ${this.lastUpdated} mins ago.
+    &lt;/footer&gt;
+    `;}
+    else {
+      return html`
+      &lt;footer id="footer"&gt;
+      Not updated recently!
+      &lt;/footer&gt;
+      `;
+    }
+  }
+</code>
+              </pre>
 
-                <p>
-                    The final step is only include the script for your transpiled custom element when the <code>WebComponentsReady</code>
-                    event fires. That’s a custom event that gets fired by the loader when the necessary polyfills have
-                    been loaded. We’ll simply create a <code>link</code> element, set its <code>rel</code> and <strong>src</strong>
-                    property to the path of our transpiled custom element code and append it to the document’s head:
-                </p>
+              <p>Check the demo again to see the second <code>extended-card</code> be rendered correctly.</p>
 
-                <pre>
-<code>
-window.addEventListener('WebComponentsReady', function () {
-    var randomGreeterImport = document.createElement('link');
-    randomGreeterImport.rel = 'import';
-    randomGreeterImport.href = 'dist/random-greeter.html';
-    document.head.appendChild(randomGreeterImport);
-});
-</code></pre>
-
-                <p>
-                    Here’s how our final <code>index.html</code> file looks like:
-                </p>
-
-                <pre>
-<code>
-&lt;!doctype html&gt;
-&lt;html lang="en"&gt;
-    &lt;head&gt;
-        &lt;meta charset="UTF-8"&gt;
-        &lt;meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"&gt;
-        &lt;meta http-equiv="X-UA-Compatible" content="ie=edge"&gt;
-        &lt;title&gt;Web Component Basics&lt;/title&gt;
-
-        &lt;script src="node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js"&gt;&lt;/script&gt;
-        &lt;script src="node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"&gt;&lt;/script&gt;
-        &lt;style&gt;
-            h1 {
-                color: #ff6600 !important;
-            }
-
-            random-greeter {
-                --var-bg-color: navy;
-                --var-color: green;
-
-                --greeter-styles: {
-                    font-family: "Bauhaus 93";
-                    font-size: 40px;
-                    border: dotted 5px yellow;
-                }
-            }
-        &lt;/style&gt;
-    &lt;/head&gt;
-    &lt;body&gt;
-        &lt;random-greeter class="light"&gt;&lt;/random-greeter&gt;
-        &lt;random-greeter class="dark"&gt;&lt;/random-greeter&gt;
-        &lt;random-greeter&gt;
-            &lt;marquee behavior="alternate" direction="right" slot="top"&gt;#BBConf rulz!!!&lt;/marquee&gt;
-            &lt;ul&gt;
-                &lt;li&gt;Something&lt;/li&gt;
-                &lt;li&gt;More something&lt;/li&gt;
-                &lt;li&gt;About&lt;/li&gt;
-            &lt;/ul&gt;
-        &lt;/random-greeter&gt;
-
-        &lt;script&gt;
-            window.addEventListener('WebComponentsReady', function () {
-                var randomGreeterImport = document.createElement('link');
-                randomGreeterImport.rel = 'import';
-                randomGreeterImport.href = 'dist/random-greeter.html';
-                document.head.appendChild(randomGreeterImport);
-            });
-        &lt;/script&gt;
-    &lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
             </google-codelab-step>
-            <google-codelab-step label="xx" duration="1">
-                <p>
-                    Custom elements allow you to extend HTML and define your own tags. They're an incredibly powerful
-                    feature, but they're also low-level, which means it's not always clear how best to implement your
-                    own element
-                </p>
 
-                <p>
-                    Here is a checklist which breaks down the things we applied to create a well behaved custom element.
-                </p>
+            <google-codelab-step label="Summary" duration="1">
+              <p>
+                In this codelab we first created a basic component, with hardly any styling and
+                functionality. After that we created a more specific card based on the basic
+                element. For all kind of use cases different components could be made based on the
+                basic element, or even extensions of an extended-card.
+              </p>
 
-                <ul class="checklist">
-                    <li>Create a shadow root to encapsulate styles.</li>
-                    <li>Create your shadow root in the constructor.</li>
-                    <li>Place any children the element creates into its shadow root.</li>
-                    <li>
-                        Set a :host display style (e.g. block, inline-block, flex) unless you prefer the default of
-                        inline.
-                    </li>
-                    <li>Add a :host display style that respects the hidden attribute.</li>
-                    <li>
-                        Always accept primitive data (strings, numbers, booleans) as either attributes or properties.
-                    </li>
-                    <li>
-                        Aim to keep primitive data attributes and properties in sync, reflecting from property to
-                        attribute, and vice versa.
-                    </li>
-                    <li>Aim to only accept rich data (objects, arrays) as properties.</li>
-                    <li>Do not reflect rich data properties to attributes.</li>
-                </ul>
+              <p>
+                We can have very simple, small, basic components which have only all basic functions
+                covered. Every custom desire can be an extension of the basic element. Not only
+                styling or properties can be added, but basically everything can be added.
+              </p>
+
+              <h2>Extra assignment</h2>
+              <p>
+                Go to <a href="https://ing.nl">ing.nl</a>, <a href="https://ing.be">ing.be</a> and
+                <a href="https://ing.de">ing.de</a> and take a look at all different types cards.
+                Each page already exists out of different type of cards. Some are having differ more
+                than other, but in general they all have the same basis.
+              </p>
+              <p>
+                Try to create two, three or four extensions of the <code>simple-card</code> or some
+                more extended card. Which can match these different cards.
+              </p>
             </google-codelab-step>
         </google-codelab>
     </template>
