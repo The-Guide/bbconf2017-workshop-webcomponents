@@ -86,7 +86,7 @@
 
       static get is() { return 'random-greeter' }
 
-      connectedCallback() {                                                       ee how a web component can be extended
+      connectedCallback() {
         console.log('random-greeter element added to the DOM!');
       }
     }
@@ -329,7 +329,7 @@ customElements.define(RandomGreeter.is, RandomGreeter);
                 <h2><strong>The pillars</strong></h2>
 
                 <p>
-                    Wrapping content in a Wrapping content in a <code>&lt;template&gt;</code> gives us few important
+                    Wrapping content in a <code>&lt;template&gt;</code> gives us few important
                     properties:
                 </p>
 
@@ -1391,7 +1391,7 @@ window.addEventListener('WebComponentsReady', function () {
 
             _oneWayBinding: function(value) {
                 return '[[' + value + ']]';
-            },
+            }
         });
     </script>
 </dom-module>
